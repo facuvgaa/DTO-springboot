@@ -1,0 +1,16 @@
+target/
+.mvn/
+mvnw
+mvnw.cmd
+.git
+.gitignore
+.idea
+.vscode
+*.iml
+*.log
+.DS_Store
+HELP.md
+docker-compose.yml
+Dockerfile
+.dockerignore
+
