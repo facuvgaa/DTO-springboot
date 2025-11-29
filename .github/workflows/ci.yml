@@ -60,17 +60,22 @@ jobs:
         file: ./Dockerfile
         push: false
         tags: apirest:test
+        load: true
         cache-from: type=gha
         cache-to: type=gha,mode=max
         
     - name: Verify Docker image
       run: |
-        docker images apirest:test
-        if [ -z "$(docker images -q apirest:test)" ]; then
-          echo "Docker image not found!"
+        docker images
+        echo "Checking for apirest:test image..."
+        if docker images apirest:test --format "{{.Repository}}:{{.Tag}}" | grep -q "apirest:test"; then
+          echo "Docker image created successfully"
+          docker images apirest:test
+        else
+          echo "Docker image not found! Available images:"
+          docker images
           exit 1
         fi
-        echo "Docker image created successfully"
 
   lint:
     runs-on: ubuntu-latest
