@@ -26,6 +26,9 @@ jobs:
       
     - name: Run tests
       run: mvn test
+      continue-on-error: false
+      env:
+        SPRING_PROFILES_ACTIVE: test
       
     - name: Package application
       run: mvn package -DskipTests
